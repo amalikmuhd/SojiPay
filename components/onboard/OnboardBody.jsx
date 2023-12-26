@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { COLORS } from '../../constants/color';
 import AppButton from '../shared/AppButton';
 import Paginator from './Paginator';
+import { router } from 'expo-router';
 
 function OnboardBody({ item, scrollX }) {
   const { width } = useWindowDimensions();
@@ -16,9 +17,15 @@ function OnboardBody({ item, scrollX }) {
         <Text style={styles.bottomTitle}>{item.title}</Text>
         <Text style={styles.bottomSubtitle}>{item.description}</Text>
       </View>
-      <View style={{ marginBottom: 40 }}>
-        <AppButton title="Create an Account" />
-        <AppButton title="Login" background={COLORS.Secondary} titleColor={COLORS.Primary} marginTop={20} />
+      <View style={{ marginBottom: 50 }}>
+        <AppButton title="Create an Account" onPress={() => router.push('/register')} />
+        <AppButton
+          title="Login"
+          background={COLORS.Secondary}
+          titleColor={COLORS.Primary}
+          marginTop={20}
+          onPress={() => router.push('/login')}
+        />
       </View>
     </View>
   );

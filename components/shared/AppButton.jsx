@@ -1,9 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS } from '../../constants/color';
 
-const AppButton = ({ title, background, titleColor, marginTop }) => {
+const AppButton = ({ title, background, titleColor, marginTop, onPress }) => {
   return (
-    <TouchableOpacity style={{ ...styles.button, backgroundColor: background || '#3170ED', marginTop: marginTop || 0 }}>
+    <TouchableOpacity
+      style={{ ...styles.button, backgroundColor: background || '#3170ED', marginTop: marginTop || 0 }}
+      onPress={onPress}
+    >
       <Text style={{ ...styles.text, color: titleColor || 'white' }}>{title}</Text>
     </TouchableOpacity>
   );

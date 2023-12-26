@@ -1,0 +1,110 @@
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import AppListText from '../components/shared/AppListText';
+import AppButton from '../components/shared/AppButton';
+import { COLORS } from '../constants/color';
+import AppInput from '../components/shared/AppInput';
+import { StatusBar } from 'expo-status-bar';
+import { useForm } from 'react-hook-form';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+const Register = () => {
+  const { control, handleSubmit, watch } = useForm();
+  const pwd = watch('password');
+
+  const onSignInPressed = (data) => {
+    console.log(data, 'data');
+  };
+
+  return (
+    <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+      <StatusBar style="dark" />
+      <View />
+      <View />
+      <View>
+        <Text style={styles.title}>
+          Create Your{'\n'}
+          <Text style={{ color: COLORS.Primary }}>SojiPay </Text>
+          Account
+        </Text>
+      </View>
+      <View>
+        <AppInput
+          name="first-name"
+          label={'First Name'}
+          control={control}
+          rules={{ required: 'First name is required' }}
+          marginTop={8}
+        />
+        <AppInput
+          name="last-name"
+          label={'Last Name'}
+          control={control}
+          rules={{ required: 'Last name is required' }}
+          marginTop={8}
+        />
+        <AppInput
+          name="email"
+          label={'Email'}
+          control={control}
+          rules={{
+            required: 'Email is required',
+            pattern: { value: EMAIL_REGEX, message: 'Email is invalid' },
+          }}
+          marginTop={8}
+        />
+        <AppInput
+          name="phone-number"
+          label={'Phone number'}
+          control={control}
+          rules={{ required: 'Phone number is required' }}
+          marginTop={8}
+        />
+        <AppInput
+          name="password"
+          label={'Create password'}
+          secureTextEntry
+          control={control}
+          rules={{
+            required: 'Password is required',
+            minLength: { value: 6, message: 'Password should be minimum 6 characters long' },
+          }}
+          marginTop={8}
+        />
+        <AppInput
+          name="confirm-password"
+          label={'Confirm password'}
+          secureTextEntry
+          control={control}
+          rules={{
+            validate: (value) => value === pwd || 'Password do not match',
+          }}
+          marginTop={8}
+        />
+      </View>
+      <View style={{ marginTop: 16 }}>
+        <AppButton title={'Continue'} onPress={handleSubmit(onSignInPressed)} />
+        <View style={{ alignItems: 'center', marginTop: 16 }}>
+          <AppListText text={'Already have an account?'} buttonTitle={'Login'} path={'Login'} />
+        </View>
+      </View>
+      <View />
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+  },
+  title: {
+    color: COLORS.black,
+    fontSize: 32,
+    fontFamily: 'Nunito-Bold',
+  },
+});
+
+export default Register;

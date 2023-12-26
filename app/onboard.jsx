@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import { Animated, FlatList, ImageBackground, StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import IMAGES from '../constants/images';
-import OnboardHeader from '../components/onboard/OnboardHeader';
 import OnboardBody from '../components/onboard/OnboardBody';
 import OnboardSlide from '../data/OnboardSlide';
+import IMAGES from '../constants/images';
+import OnboardHeader from '../components/onboard/OnboardHeader';
 
-export default function Onboard() {
+const onboard = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
@@ -33,7 +33,7 @@ export default function Onboard() {
       </ImageBackground>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -51,3 +51,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 });
+
+export default onboard;

@@ -9,15 +9,17 @@ export default function TitleWithIcon({
   title,
   titleFontFamily,
   trailing,
+  onPress
 }) {
   return (
     <Pressable
       style={{
         flexDirection: trailing ? 'row' : '',
         justifyContent: trailing ? 'space-between' : '',
-        alignItems: trailing || 'center',
+        alignItems: trailing ? 'center' : 'flex-start',
         width: trailing ? '100%' : 'auto',
       }}
+      onPress={onPress}
     >
       <View
         style={{

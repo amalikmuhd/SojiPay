@@ -101,6 +101,7 @@ const Register = () => {
 const styles = StyleSheet.create({
   root: {
     paddingHorizontal: 20,
+    paddingTop:20
   },
 
   topHeader: {

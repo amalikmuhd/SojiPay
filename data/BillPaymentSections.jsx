@@ -1,10 +1,10 @@
-import IMAGES from '../constants/images';
+import IMAGES from "../constants/images";
 
 const BillPayment = [
-  { title: 'Data', icon: IMAGES.dataIcon },
-  { title: 'Electricity', icon: IMAGES.eletricityIcon },
-  { title: 'Tv', icon: IMAGES.tvIcon },
-  { title: 'Education', icon: IMAGES.educationIcon },
+  { title: "Data", icon: IMAGES.dataIcon, link: "/data" },
+  { title: "Electricity", icon: IMAGES.eletricityIcon, link: "/electricity" },
+  { title: "Tv", icon: IMAGES.tvIcon, link: "/tv" },
+  { title: "Education", icon: IMAGES.educationIcon, link: "/education" },
 ];
 
 export default BillPayment;

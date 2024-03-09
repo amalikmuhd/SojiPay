@@ -7,24 +7,22 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import AppInput from "../../components/shared/AppInput";
-import AppButton from "../../components/shared/AppButton";
+import AppInput from "../components/shared/AppInput";
+import AppButton from "../components/shared/AppButton";
 import { EvilIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { useForm } from "react-hook-form";
-import { COLORS } from "../../constants/color";
-import useImagePicker from "../../hooks/useImagePicker";
+import { COLORS } from "../constants/color";
 import { BottomModal, ModalContent, SlideAnimation } from "react-native-modals";
-import AppModal from "../../components/shared/AppModal";
+import useImagePicker from "../hooks/useImagePicker";
+import useCamera from "../hooks/useCamera";
+import AppModal from "../components/shared/AppModal";
 import { router } from "expo-router";
-import useCamera from "../../hooks/useCamera";
-import { AntDesign } from "@expo/vector-icons";
 
 export default function Gift() {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [activeM, setActiveM] = React.useState("");
   const [modal, setModal] = React.useState(false);
-  const [showDrop, setshowDrop] = React.useState(false);
   const { control, handleSubmit, watch } = useForm();
 
   const { handlePress, newImg } = useImagePicker();
@@ -47,13 +45,13 @@ export default function Gift() {
           <View />
           <View />
           <View>
-            <Text className="mt-5 font-normal text-lg">Card Name</Text>
-            <View className="w-4/4 relative flex-row items-center justify-between border-gray-300 border p-3 rounded-lg">
-              <Text className="text-sm font-medium text-gray-500">Google Play</Text>
-              <Pressable onPress={() => setshowDrop(!showDrop)}>
-                <AntDesign name="down" size={14} color="gray" />
-              </Pressable>
-            </View>
+            <AppInput
+              name="cardname"
+              label={"Card Name"}
+              control={control}
+              rules={{ required: "Card name is required" }}
+              marginTop={8}
+            />
             <AppInput
               name="cardnumber"
               label={"Card number"}
@@ -61,13 +59,11 @@ export default function Gift() {
               rules={{ required: "Card number is required" }}
               marginTop={8}
               keyboard="number-pad"
-              placeholder={"123909893847"}
             />
             <AppInput
               name="pin"
               label={"Pin/Security code"}
               control={control}
-              placeholder={"******"}
               rules={{
                 required: "Pin is required",
                 minLength: {
@@ -85,7 +81,6 @@ export default function Gift() {
               control={control}
               rules={{ required: "Card Value is required" }}
               marginTop={8}
-              placeholder={"₦85,000"}
             />
             {newImg ? (
               <Pressable onPress={handlePress}>

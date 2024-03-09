@@ -5,17 +5,24 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
-} from 'react-native';
-import React from 'react';
-import AppListText from '../../components/shared/AppListText';
-import IMAGES from '../../constants/images';
-import { COLORS } from '../../constants/color';
-import formatDate from '../../utils/FormatDate';
-import TitleWithIcon from '../../components/shared/TitleWithIcon.jsx';
-import BillPayment from '../../data/BillPaymentSections';
+} from "react-native";
+import React from "react";
+import AppListText from "../../components/shared/AppListText";
+import IMAGES from "../../constants/images";
+import { COLORS } from "../../constants/color";
+import formatDate from "../../utils/FormatDate";
+import TitleWithIcon from "../../components/shared/TitleWithIcon.jsx";
+import BillPayment from "../../data/BillPaymentSections";
+import { router } from "expo-router";
 
 export default function Overview() {
+  const handlePress = (item) => {
+    console.log("items...",item)
+    // Handle onPress event here, for example, navigate to another screen
+    router.push(item);
+  };
   // const { data, setData } = useContext(UserDataContext);
   return (
     <View style={styles.container}>
@@ -27,9 +34,9 @@ export default function Overview() {
         <View style={styles.innerTop}>
           <View>
             <AppListText
-              text={'Hello, Abdulmalik 👋🏾'}
+              text={"Hello, Abdulmalik 👋🏾"}
               textColor={COLORS.white}
-              fontFamily={'Nunito-Bold'}
+              fontFamily={"Nunito-Bold"}
               marginBottom={3}
             />
             <AppListText
@@ -54,20 +61,22 @@ export default function Overview() {
               icon={IMAGES.giftIcon}
               title="Sell Gift Card"
               titleFontFamily="Nunito-Medium"
+              onPress={() => router.push("/giftcard")}
             />
             <TitleWithIcon
               variant={true}
               icon={IMAGES.phoneIcon}
               title="Buy Airtime"
               titleFontFamily="Nunito-Medium"
+              onPress={() => router.push("/data")}
             />
           </View>
 
           <View style={styles.thirdContainer}>
             <AppListText
-              text={'Bill payment'}
+              text={"Bill payment"}
               textColor={COLORS.black}
-              fontFamily={'Nunito-Medium'}
+              fontFamily={"Nunito-Medium"}
               marginBottom={20}
             />
             <FlatList
@@ -76,16 +85,22 @@ export default function Overview() {
               contentContainerStyle={styles.billPaymentStyle}
               data={BillPayment}
               renderItem={({ item }) => (
-                <TitleWithIcon title={item.title} icon={item.icon} />
+                
+                  <TitleWithIcon
+                    title={item.title}
+                    icon={item.icon}
+                    onPress={()=>handlePress(item.link)}
+                  />
+               
               )}
             />
           </View>
 
           <View style={styles.fouthCountainer}>
             <AppListText
-              text={'Transaction history'}
+              text={"Transaction history"}
               textColor={COLORS.black}
-              fontFamily={'Nunito-Medium'}
+              fontFamily={"Nunito-Medium"}
               marginBottom={10}
             />
             <FlatList
@@ -101,9 +116,9 @@ export default function Overview() {
                   />
                   <AppListText
                     text={
-                      'No history yet, transaction history will appear here if you have one.'
+                      "No history yet, transaction history will appear here if you have one."
                     }
-                    fontFamily={'Nunito-Medium'}
+                    fontFamily={"Nunito-Medium"}
                     textAlign="center"
                   />
                 </View>
@@ -122,13 +137,13 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
 
   innerTop: {
     flex: 0.12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingHorizontal: 20,
   },
   FlatContainer: {
@@ -136,7 +151,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   notification: {
     width: 24,
@@ -144,15 +159,15 @@ const styles = StyleSheet.create({
   },
 
   secondContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     marginTop: -30,
     borderRadius: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingVertical: 20,
     paddingHorizontal: 20,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
@@ -165,11 +180,11 @@ const styles = StyleSheet.create({
 
   thirdContainer: {
     paddingHorizontal: 20,
-    width: '100%',
+    width: "100%",
     backgroundColor: COLORS.white,
     paddingVertical: 40,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
@@ -180,29 +195,29 @@ const styles = StyleSheet.create({
     elevation: 0.8,
   },
   billPaymentStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
   },
 
   fouthCountainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: "space-around",
   },
   emptpStateContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: 40,
     gap: 20,
   },
   imageStyle: {
     width: 145,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     height: 145,
     marginBottom: 20,
   },
 
   transactionStyle: {
-    justifyContent: 'center',
+    justifyContent: "center",
     flex: 1,
   },
 });

@@ -7,6 +7,9 @@ export const IMAGES = {
 
   // ICON
   showIcon: require('../assets/icons/show-icon.png'),
+  airtelIcon: require('../assets/icons/airtel.png'),
+  etisalatIcon: require('../assets/icons/etisalate.png'),
+  gloIcon: require('../assets/icons/glo.png'),
   mtnIcon: require('../assets/icons/mtn.png'),
   hideIcon: require('../assets/icons/hide-icon.png'),
   fingerIcon: require('../assets/icons/finger-print.png'),
@@ -23,5 +26,11 @@ export const IMAGES = {
   helpIcon: require('../assets/icons/help-icon.png'),
   logoutIcon: require('../assets/icons/logout-icon.png'),
   passwordIcon: require('../assets/icons/password-icon.png'),
+  ibdecIcon: require('../assets/icons/ibedc.png'),
+  ikejaIcon: require('../assets/icons/ikeja.png'),
+  startimeIcon: require('../assets/icons/startimes.png'),
+  dstvIcon: require('../assets/icons/dstv.png'),
+  waecIcon: require('../assets/icons/waec.png'),
+
 };
 export default IMAGES;

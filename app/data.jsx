@@ -94,7 +94,10 @@ const Data = () => {
           <ScrollView contentContainerStyle={styles.scrollViewContent}>
             {dataData.map((item) => (
               <View key={item?.id} style={styles.itemContainer}>
-                <View className="w-full h-12 flex-row">
+                <Pressable
+                  className="w-full h-12 flex-row"
+                  onPress={() => setModalOpen(!modalOpen)}
+                >
                   <View className="mr-1">
                     <Text className="font-semibold mb-2">{item.gb}</Text>
                     <Text style={{ color: COLORS.grayShadow }}>
@@ -107,16 +110,10 @@ const Data = () => {
                   >
                     {item.days}
                   </Text>
-                </View>
+                </Pressable>
               </View>
             ))}
           </ScrollView>
-          <View className="mt-10">
-            <AppButton
-              title={"Buy airtime"}
-              onPress={() => setModalOpen(!modalOpen)}
-            />
-          </View>
         </View>
       </ScrollView>
       <BottomModal
@@ -133,7 +130,7 @@ const Data = () => {
         // onSwipeOut={()=> setModalOpen(!modalOpen)}
         onTouchOutside={() => setModalOpen(!modalOpen)}
       >
-        <ModalContent style={{ width: "100%", height: 400 }}>
+        <ModalContent style={{ width: "100%", height: 450 }}>
           <View className="w-full">
             <View className="w-full p-2 rounded-lg">
               <Text className="font-medium text-lg text-gray-700 text-center mb-5">
@@ -147,9 +144,16 @@ const Data = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Card value
+                  Description
                 </Text>
-                <Text className="text-[16px] font-semibold">89,000</Text>
+                <View className="flex flex-row items-center">
+                  <Image
+                    source={IMAGES.mtnIcon}
+                    style={styles.notification}
+                    className="mr-2"
+                  />
+                  <Text className="text-[16px] font-medium">Data</Text>
+                </View>
               </View>
               <View className="w-full flex flex-row items-center justify-between mb-5">
                 <Text
@@ -159,9 +163,9 @@ const Data = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Platform charge:
+                  Amount
                 </Text>
-                <Text className="text-[16px] font-semibold">1,000</Text>
+                <Text className="text-[16px] font-semibold">₦ 1,000</Text>
               </View>
               <View className="w-full flex flex-row items-center justify-between mb-2">
                 <Text
@@ -171,17 +175,41 @@ const Data = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Total charge
+                  Data plan
                 </Text>
-                <Text className="text-[16px] font-semibold">90,000</Text>
+                <Text className="text-[16px] font-semibold">2 days/2.5GB</Text>
+              </View>
+              <View className="w-full flex flex-row items-center justify-between mb-2">
+                <Text
+                  className="text-[16px] font-semibold"
+                  style={{
+                    fontFamily: "Nunito-Regular",
+                    color: COLORS.grayShadow,
+                  }}
+                >
+                  Recipient number
+                </Text>
+                <Text className="text-[16px] font-semibold">07033173982</Text>
+              </View>
+              <View className="w-full flex flex-row items-center justify-between mb-0">
+                <Text
+                  className="text-[16px] font-semibold"
+                  style={{
+                    fontFamily: "Nunito-Regular",
+                    color: COLORS.grayShadow,
+                  }}
+                >
+                 Save as beneficiary
+                </Text>
+                <Text className="text-[16px] font-semibold">Yes</Text>
               </View>
             </View>
             <AppButton
-              title={"Submit"}
+              title={"Buy Data"}
               marginTop={100}
               // onPress={handleSubmit(onSignInPressed)}
               onPress={() => {
-                router.push("payment");
+                router.push("datapayment");
                 setModalOpen(!modalOpen);
               }}
             />

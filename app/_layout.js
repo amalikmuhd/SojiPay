@@ -19,7 +19,7 @@ export default () => {
             name="index"
             options={{ headerShown: false, gestureEnabled: false }}
           />
-         
+
           <Stack.Screen
             name="home"
             options={{ headerShown: false, gestureEnabled: false }}
@@ -48,28 +48,68 @@ export default () => {
             name="create-new-password"
             options={{ headerShown: false, gestureEnabled: false }}
           />
-           <Stack.Screen
+          <Stack.Screen
             name="airtime"
-            options={{ headerShown: true, gestureEnabled: false, title:'Airtime', }}
+            options={{
+              headerShown: true,
+              gestureEnabled: false,
+              title: "Airtime",
+            }}
+          />
+          <Stack.Screen
+            name="giftcard"
+            options={{
+              headerShown: true,
+              gestureEnabled: false,
+              title: "Gift Card",
+            }}
           />
           <Stack.Screen
             name="data"
-            options={{ headerShown: true, gestureEnabled: false, title:'Data' }}
+            options={{
+              headerShown: true,
+              gestureEnabled: false,
+              title: "Data",
+            }}
           />
           <Stack.Screen
             name="electricity"
-            options={{ headerShown: true, gestureEnabled: false, title:'Electricity' }}
+            options={{
+              headerShown: true,
+              gestureEnabled: false,
+              title: "Electricity",
+            }}
           />
           <Stack.Screen
             name="education"
-            options={{ headerShown: true, gestureEnabled: false, title:'Education' }}
+            options={{
+              headerShown: true,
+              gestureEnabled: false,
+              title: "Education",
+            }}
           />
           <Stack.Screen
             name="tv"
-            options={{ headerShown: true, gestureEnabled: false, title:'Tv' }}
+            options={{ headerShown: true, gestureEnabled: false, title: "Tv" }}
           />
           <Stack.Screen
             name="payment"
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="datapayment"
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="electpay"
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="tvpay"
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="edupay"
             options={{ headerShown: false, gestureEnabled: false }}
           />
         </Stack>

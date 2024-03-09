@@ -47,20 +47,20 @@ const Airtime = () => {
                 style={styles.notification}
                 className="mr-2"
               />
-              <AntDesign name="down" size={20} color="gray" />
+              <AntDesign name="down" size={14} color="gray" />
             </Pressable>
             <View className="w-3/4 flex-row items-center justify-between">
-              <Text className="text-lg font-medium text-gray-500">
+              <Text className="text-sm font-medium text-gray-500">
                 09033173928
               </Text>
-              <AntDesign name="down" size={20} color="gray" />
+              <AntDesign name="down" size={14} color="gray" />
             </View>
           </View>
           <Text className="text-right" style={{ color: COLORS.Primary }}>
             Select number from contact
           </Text>
           <Text className="mt-5 font-normal text-lg">Airtime Top up</Text>
-          <View className="flex-row gap-6 flex-wrap mt-1">
+          <View className="flex-row gap-6 flex-wrap mt-0">
             <Pressable
               className="w-[150px] h-14 rounded-lg flex items-center justify-center"
               style={{ backgroundColor: COLORS.Secondary }}
@@ -132,9 +132,16 @@ const Airtime = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Card value
+                  Description
                 </Text>
-                <Text className="text-[16px] font-semibold">89,000</Text>
+                <View className="flex flex-row items-center">
+                  <Image
+                    source={IMAGES.mtnIcon}
+                    style={styles.notification}
+                    className="mr-2"
+                  />
+                  <Text className="text-[16px] font-medium">Airtime</Text>
+                </View>
               </View>
               <View className="w-full flex flex-row items-center justify-between mb-5">
                 <Text
@@ -144,9 +151,9 @@ const Airtime = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Platform charge:
+                  Amount
                 </Text>
-                <Text className="text-[16px] font-semibold">1,000</Text>
+                <Text className="text-[16px] font-semibold">₦ 1,000</Text>
               </View>
               <View className="w-full flex flex-row items-center justify-between mb-2">
                 <Text
@@ -156,18 +163,29 @@ const Airtime = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Total charge
+                  Recipient Number:
                 </Text>
-                <Text className="text-[16px] font-semibold">90,000</Text>
+                <Text className="text-[16px] font-semibold">08033176876</Text>
+              </View>
+              <View className="w-full flex flex-row items-center justify-between mb-0">
+                <Text
+                  className="text-[16px] font-semibold"
+                  style={{
+                    fontFamily: "Nunito-Regular",
+                    color: COLORS.grayShadow,
+                  }}
+                >
+                  Save as beneficiary
+                </Text>
+                <Text className="text-[16px] font-semibold">Yes</Text>
               </View>
             </View>
             <AppButton
-              title={"Submit"}
+              title={"Buy Airtime"}
               marginTop={100}
-              // onPress={handleSubmit(onSignInPressed)}
               onPress={() => {
                 router.push("payment");
-                setModalOpen(!modalOpen)
+                setModalOpen(!modalOpen);
               }}
             />
           </View>

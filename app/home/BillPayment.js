@@ -1,11 +1,15 @@
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import TitleWithIcon from '../../components/shared/TitleWithIcon';
 import BillPaymentList from '../../data/BillPaymentList';
 import { COLORS } from '../../constants/color';
+import { router } from 'expo-router';
 
 export default function Bills() {
   return (
+    // <View>
+    //   <Text>Bill Payment in progress</Text>
+    // </View>
     <FlatList
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.billPaymentStyle}
@@ -25,6 +29,7 @@ export default function Bills() {
             title={item.title}
             icon={item.icon}
             trailing
+            onPress={()=>router.push(item.route)}
           />
         </View>
       )}

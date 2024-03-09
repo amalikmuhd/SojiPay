@@ -31,7 +31,7 @@ const Register = () => {
     return <Text>{error.message}</Text>;
   }
 
-  console.log(data?.slice(1), 'tweets');
+  // console.log(data?.slice(1), 'tweets');
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -53,6 +53,7 @@ const Register = () => {
             control={control}
             rules={{ required: 'First name is required' }}
             marginTop={8}
+            
           />
           <AppInput
             name="last-name"

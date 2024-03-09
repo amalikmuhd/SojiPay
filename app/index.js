@@ -43,7 +43,7 @@ function HomePage() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="light" />
+      <StatusBar style="auto" />
       <ImageBackground source={IMAGES.authBackground} resizeMode="cover" style={styles.image}>
         <OnboardHeader />
         <View style={styles.FlatContainer}>

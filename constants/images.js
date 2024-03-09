@@ -7,6 +7,7 @@ export const IMAGES = {
 
   // ICON
   showIcon: require('../assets/icons/show-icon.png'),
+  mtnIcon: require('../assets/icons/mtn.png'),
   hideIcon: require('../assets/icons/hide-icon.png'),
   fingerIcon: require('../assets/icons/finger-print.png'),
   notificationIcon: require('../assets/icons/notification-icon.png'),

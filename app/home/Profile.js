@@ -6,15 +6,15 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-} from 'react-native';
-import React, { useState } from 'react';
-import AppListText from '../../components/shared/AppListText';
-import IMAGES from '../../constants/images';
-import { COLORS } from '../../constants/color';
-import TitleWithIcon from '../../components/shared/TitleWithIcon.jsx';
-import ProfileData from '../../data/ProfileData';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
+} from "react-native";
+import React, { useState } from "react";
+import AppListText from "../../components/shared/AppListText";
+import IMAGES from "../../constants/images";
+import { COLORS } from "../../constants/color";
+import TitleWithIcon from "../../components/shared/TitleWithIcon.jsx";
+import { UserProfileTab, ProfileSettingTab } from "../../data/ProfileData";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Profile() {
   const [switchState, setSwitch] = useState(false);
@@ -29,9 +29,9 @@ export default function Profile() {
           <View style={styles.innerContainer}>
             <Ionicons name="arrow-back" size={24} color={COLORS.white} />
             <AppListText
-              text={'Profile'}
+              text={"Profile"}
               textColor={COLORS.white}
-              fontFamily={'Nunito-Bold'}
+              fontFamily={"Nunito-Bold"}
             />
 
             <MaterialIcons name="edit" size={24} color={COLORS.white} />
@@ -41,9 +41,9 @@ export default function Profile() {
             <Image source={IMAGES.avatarIcon} style={styles.avaterStyle} />
             <View style={styles.middleTextStyle}>
               <AppListText
-                text={'Abdulmalik Muhammad'}
+                text={"Abdulmalik Muhammad"}
                 textColor={COLORS.white}
-                fontFamily={'Nunito-Bold'}
+                fontFamily={"Nunito-Bold"}
               />
               <AppListText
                 text={`amalikmuhdd@gmail.com`}
@@ -69,14 +69,14 @@ export default function Profile() {
                     ? styles.activeButton
                     : {
                         ...styles.activeButton,
-                        backgroundColor: 'transparent',
+                        backgroundColor: "transparent",
                       }
                 }
               >
                 <AppListText
-                  text={'Profile'}
+                  text={"Profile"}
                   textColor={switchState ? COLORS.white : COLORS.grayShadow}
-                  fontFamily={'Nunito-Medium'}
+                  fontFamily={"Nunito-Medium"}
                 />
               </TouchableOpacity>
 
@@ -87,14 +87,14 @@ export default function Profile() {
                     ? styles.activeButton
                     : {
                         ...styles.activeButton,
-                        backgroundColor: 'transparent',
+                        backgroundColor: "transparent",
                       }
                 }
               >
                 <AppListText
-                  text={'Settings'}
+                  text={"Settings"}
                   textColor={switchState ? COLORS.grayShadow : COLORS.white}
-                  fontFamily={'Nunito-Medium'}
+                  fontFamily={"Nunito-Medium"}
                 />
               </TouchableOpacity>
             </View>
@@ -102,18 +102,15 @@ export default function Profile() {
 
           <View style={styles.fouthCountainer}>
             <FlatList
-              data={
-                switchState
-                  ? ProfileData.UserProfileTab
-                  : ProfileData.ProfileSettingTab
-              }
+              data={switchState ? ProfileSettingTab : UserProfileTab}
               contentContainerStyle={styles.transactionStyle}
               renderItem={({ item }) => (
                 <TitleWithIcon
                   variant={true}
                   title={item.title}
                   icon={item.icon}
-                  trailing
+                  trailing={true}
+                  // trailing
                 />
               )}
             />
@@ -130,7 +127,7 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
 
   innerTop: {
@@ -139,15 +136,15 @@ const styles = StyleSheet.create({
   },
 
   innerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 
   innerSeconContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     gap: 40,
   },
 
@@ -157,7 +154,7 @@ const styles = StyleSheet.create({
   },
 
   middleTextStyle: {
-    alignItems: 'center',
+    alignItems: "center",
     gap: 3,
   },
 
@@ -166,7 +163,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   notification: {
     width: 24,
@@ -174,15 +171,15 @@ const styles = StyleSheet.create({
   },
 
   secondContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     marginTop: -30,
     borderRadius: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingVertical: 20,
     paddingHorizontal: 20,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
@@ -195,12 +192,12 @@ const styles = StyleSheet.create({
 
   thirdContainer: {
     paddingHorizontal: 20,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
     backgroundColor: COLORS.white,
     paddingVertical: 30,
-    shadowColor: '#000',
+    shadowColor: "#000",
     gap: 5,
     shadowOffset: {
       width: 0,
@@ -213,7 +210,7 @@ const styles = StyleSheet.create({
   },
 
   innerThirdContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     backgroundColor: COLORS.Secondary,
     borderRadius: 10,
   },
@@ -221,15 +218,15 @@ const styles = StyleSheet.create({
   fouthCountainer: { flex: 0.7 },
 
   transactionStyle: {
-    justifyContent: 'center',
+    justifyContent: "center",
     flex: 1,
     gap: 20,
   },
 
   activeButton: {
     backgroundColor: COLORS.Primary,
-    width: '50%',
-    alignItems: 'center',
+    width: "50%",
+    alignItems: "center",
     paddingVertical: 10,
     borderRadius: 10,
   },

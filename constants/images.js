@@ -31,6 +31,8 @@ export const IMAGES = {
   startimeIcon: require('../assets/icons/startimes.png'),
   dstvIcon: require('../assets/icons/dstv.png'),
   waecIcon: require('../assets/icons/waec.png'),
+  emptynotificationIcon: require('../assets/icons/emptynotification.png'),
+
 
 };
 export default IMAGES;

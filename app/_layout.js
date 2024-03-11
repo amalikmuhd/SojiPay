@@ -5,7 +5,6 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { UserDataProvider } from "../contexts/UserData";
-import { NavigationContainer } from "@react-navigation/native";
 const queryClient = new QueryClient();
 import { ModalPortal } from "react-native-modals";
 
@@ -14,7 +13,7 @@ export default () => {
     <UserDataProvider>
       <QueryClientProvider client={queryClient}>
         {/* <NavigationContainer> */}
-        <Stack>
+        <Stack screenOptions={{ headerShadowVisible: false }}>
           <Stack.Screen
             name="index"
             options={{ headerShown: false, gestureEnabled: false }}
@@ -112,9 +111,13 @@ export default () => {
             name="edupay"
             options={{ headerShown: false, gestureEnabled: false }}
           />
+          <Stack.Screen
+            name="notification"
+            options={{ headerShown: true, gestureEnabled: false, headerTitle:'Notification' }}
+          />
         </Stack>
         <ModalPortal />
-        {/* </NavigationContainer> */}
+      
       </QueryClientProvider>
     </UserDataProvider>
   );

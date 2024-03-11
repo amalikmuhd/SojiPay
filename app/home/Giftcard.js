@@ -28,9 +28,8 @@ export default function Gift() {
   const { control, handleSubmit, watch } = useForm();
 
   const { handlePress, newImg } = useImagePicker();
-  const { handleTakePhoto, handleRemove, newImg: cameraImage } = useCamera();
-  console.log("This is the image i uploaded", newImg);
-  console.log("This is the camera photo i uploaded", cameraImage);
+  const { handleTakePhoto, handleCapture, capturedImg } = useCamera();
+  console.log("This is the camera photo i uploaded", capturedImg);
   const onSignInPressed = (data) => {
     const { cardname, cardnumber } = data;
     router.push({ pathname: "verify-email", params: { cardname, cardnumber } });
@@ -49,7 +48,9 @@ export default function Gift() {
           <View>
             <Text className="mt-5 font-normal text-lg">Card Name</Text>
             <View className="w-4/4 relative flex-row items-center justify-between border-gray-300 border p-3 rounded-lg">
-              <Text className="text-sm font-medium text-gray-500">Google Play</Text>
+              <Text className="text-sm font-medium text-gray-500">
+                Google Play
+              </Text>
               <Pressable onPress={() => setshowDrop(!showDrop)}>
                 <AntDesign name="down" size={14} color="gray" />
               </Pressable>
@@ -76,7 +77,7 @@ export default function Gift() {
                 },
               }}
               marginTop={8}
-              // trailingIcon
+              trailingIcon
               secureTextEntry={false}
             />
             <AppInput
@@ -87,10 +88,10 @@ export default function Gift() {
               marginTop={8}
               placeholder={"₦85,000"}
             />
-            {newImg ? (
-              <Pressable onPress={handlePress}>
+            {newImg || capturedImg ? (
+              <Pressable onPress={handlePress || handleCapture}>
                 <Image
-                  source={{ uri: newImg }}
+                  source={{ uri: newImg || capturedImg }}
                   style={{
                     width: "100%",
                     height: 140,
@@ -143,7 +144,7 @@ export default function Gift() {
             </Text>
           </View>
           <View style={{ marginTop: 16 }}>
-            {newImg ? (
+            {newImg || capturedImg ? (
               <AppButton
                 title={"Continue"}
                 onPress={() => {

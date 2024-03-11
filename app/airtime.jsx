@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Pressable,
   TextInput,
+  Switch,
 } from "react-native";
 import React, { useState } from "react";
 import { BottomModal, ModalContent, SlideAnimation } from "react-native-modals";
@@ -14,26 +15,19 @@ import { AntDesign } from "@expo/vector-icons";
 import { COLORS } from "../constants/color";
 import AppButton from "../components/shared/AppButton";
 import { router } from "expo-router";
+
 const Airtime = () => {
-  const [selected, setSelected] = React.useState("");
   const [modalOpen, setModalOpen] = React.useState(false);
-  const [modal, setModal] = React.useState(false);
-  const showSuccess = () => {
-    setModal(!modal);
-    setModalOpen(!modalOpen);
-  };
-  const data = [
-    { key: "1", value: "0810345434" },
-    { key: "2", value: "0703212344" },
-  ];
+  const [isShown, setIsShown] = useState(false);
   const [number, setNumber] = useState("");
 
   // Function to handle text input changes
   const handleInputChange = (inputValue) => {
-    // Replace non-numeric characters with an empty string
     const formattedValue = inputValue.replace(/[^0-9]/g, "");
-    // Update state with the formatted value
     setNumber(formattedValue);
+  };
+  const toggleTheBox = () => {
+    setIsShown((previousState) => !previousState);
   };
   return (
     <>
@@ -177,7 +171,16 @@ const Airtime = () => {
                 >
                   Save as beneficiary
                 </Text>
-                <Text className="text-[16px] font-semibold">Yes</Text>
+                <View>
+                  <Switch
+                    trackColor={{ false: "#767577", true: "#4caf50" }}
+                    thumbColor={isShown ? "#8bc34a" : "#ddd"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleTheBox}
+                    value={isShown}
+                  />
+                </View>
+                {/* <Text className="text-[16px] font-semibold">Yes</Text> */}
               </View>
             </View>
             <AppButton

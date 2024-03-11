@@ -7,6 +7,7 @@ import {
   Pressable,
   TextInput,
   TouchableOpacity,
+  Switch,
 } from "react-native";
 import React, { useState } from "react";
 import { BottomModal, ModalContent, SlideAnimation } from "react-native-modals";
@@ -21,6 +22,10 @@ const Electricity = () => {
   const [showDrop, setshowDrop] = React.useState(false);
   const [number, setNumber] = useState("");
   const [switchState, setSwitch] = useState("");
+  const [isShown, setIsShown] = useState(false);
+  const toggleTheBox = () => {
+    setIsShown((previousState) => !previousState);
+  };
   const electData = [
     { id: 1, amount: 1000 },
     { id: 2, amount: 2000 },
@@ -271,7 +276,15 @@ const Electricity = () => {
                 >
                   Save as beneficiary
                 </Text>
-                <Text className="text-[16px] font-semibold">Yes</Text>
+                <View>
+                  <Switch
+                    trackColor={{ false: "#767577", true: "#4caf50" }}
+                    thumbColor={isShown ? "#8bc34a" : "#ddd"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleTheBox}
+                    value={isShown}
+                  />
+                </View>
               </View>
             </View>
             <AppButton

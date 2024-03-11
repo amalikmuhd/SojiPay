@@ -46,7 +46,7 @@ export default function Overview() {
             />
           </View>
 
-          <Pressable>
+          <Pressable onPress={()=>router.push("/notification")}>
             <Image
               source={IMAGES.notificationIcon}
               style={styles.notification}

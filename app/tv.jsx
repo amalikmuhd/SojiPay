@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Pressable,
   TextInput,
+  Switch,
 } from "react-native";
 import React, { useState } from "react";
 import { BottomModal, ModalContent, SlideAnimation } from "react-native-modals";
@@ -20,6 +21,10 @@ const Tv = () => {
   const [showDrop, setshowDrop] = React.useState(false);
   const [showPackage, setshowPackager] = React.useState(false);
   const [modal, setModal] = React.useState(false);
+  const [isShown, setIsShown] = useState(false);
+  const toggleTheBox = () => {
+    setIsShown((previousState) => !previousState);
+  };
   const showSuccess = () => {
     setModal(!modal);
     setModalOpen(!modalOpen);
@@ -241,7 +246,15 @@ const Tv = () => {
                 >
                   Save as beneficiary
                 </Text>
-                <Text className="text-[16px] font-semibold">Yes</Text>
+                <View>
+                  <Switch
+                    trackColor={{ false: "#767577", true: "#4caf50" }}
+                    thumbColor={isShown ? "#8bc34a" : "#ddd"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleTheBox}
+                    value={isShown}
+                  />
+                </View>
               </View>
             </View>
             <AppButton

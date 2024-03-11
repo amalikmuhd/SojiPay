@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Pressable,
   TextInput,
+  Switch,
 } from "react-native";
 import React, { useState } from "react";
 import { BottomModal, ModalContent, SlideAnimation } from "react-native-modals";
@@ -20,6 +21,10 @@ const Education = () => {
   const [showDrop, setshowDrop] = React.useState(false);
   const [showPackage, setshowPackager] = React.useState(false);
   const [modal, setModal] = React.useState(false);
+  const [isShown, setIsShown] = useState(false);
+  const toggleTheBox = () => {
+    setIsShown((previousState) => !previousState);
+  };
   const showSuccess = () => {
     setModal(!modal);
     setModalOpen(!modalOpen);
@@ -52,7 +57,9 @@ const Education = () => {
               <AntDesign name="down" size={14} color="gray" />
             </Pressable>
           </View>
-          <Text className="mt-5 font-normal text-lg mb-2">Network Operators</Text>
+          <Text className="mt-5 font-normal text-lg mb-2">
+            Network Operators
+          </Text>
           <View className="w-4/4 relative flex-row items-center justify-between border-gray-300 border p-3 rounded-lg">
             <Text className="text-sm font-medium text-gray-500">
               Select operators
@@ -91,7 +98,6 @@ const Education = () => {
             />
           </View>
 
-          
           {showDrop && (
             <View className="absolute z-20 p-4 top-[104px] right-4 bg-white border border-gray-100 shadow-xl w-full rounded-lg">
               <View className="flex flex-row items-center mb-3 ">
@@ -187,7 +193,9 @@ const Education = () => {
                     style={styles.notification}
                     className="mr-1"
                   />
-                  <Text className="text-[16px] font-medium">WAEC Result Checker pin</Text>
+                  <Text className="text-[16px] font-medium">
+                    WAEC Result Checker pin
+                  </Text>
                 </View>
               </View>
               <View className="w-full flex flex-row items-center justify-between mb-5">
@@ -210,7 +218,7 @@ const Education = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                 Network Operator
+                  Network Operator
                 </Text>
                 <View className="flex flex-row items-center">
                   <Image
@@ -231,7 +239,9 @@ const Education = () => {
                 >
                   Email
                 </Text>
-                <Text className="text-[16px] font-semibold">John@gmail.com</Text>
+                <Text className="text-[16px] font-semibold">
+                  John@gmail.com
+                </Text>
               </View>
               <View className="w-full flex flex-row items-center justify-between mb-0">
                 <Text
@@ -243,7 +253,15 @@ const Education = () => {
                 >
                   Save as beneficiary
                 </Text>
-                <Text className="text-[16px] font-semibold">Yes</Text>
+                <View>
+                  <Switch
+                    trackColor={{ false: "#767577", true: "#4caf50" }}
+                    thumbColor={isShown ? "#8bc34a" : "#ddd"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleTheBox}
+                    value={isShown}
+                  />
+                </View>
               </View>
             </View>
             <AppButton

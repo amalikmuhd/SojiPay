@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Pressable,
   TextInput,
+  Switch,
 } from "react-native";
 import React, { useState } from "react";
 import { BottomModal, ModalContent, SlideAnimation } from "react-native-modals";
@@ -14,26 +15,19 @@ import { AntDesign } from "@expo/vector-icons";
 import { COLORS } from "../constants/color";
 import AppButton from "../components/shared/AppButton";
 import { router } from "expo-router";
+
 const Airtime = () => {
-  const [selected, setSelected] = React.useState("");
   const [modalOpen, setModalOpen] = React.useState(false);
-  const [modal, setModal] = React.useState(false);
-  const showSuccess = () => {
-    setModal(!modal);
-    setModalOpen(!modalOpen);
-  };
-  const data = [
-    { key: "1", value: "0810345434" },
-    { key: "2", value: "0703212344" },
-  ];
+  const [isShown, setIsShown] = useState(false);
   const [number, setNumber] = useState("");
 
   // Function to handle text input changes
   const handleInputChange = (inputValue) => {
-    // Replace non-numeric characters with an empty string
     const formattedValue = inputValue.replace(/[^0-9]/g, "");
-    // Update state with the formatted value
     setNumber(formattedValue);
+  };
+  const toggleTheBox = () => {
+    setIsShown((previousState) => !previousState);
   };
   return (
     <>
@@ -47,20 +41,20 @@ const Airtime = () => {
                 style={styles.notification}
                 className="mr-2"
               />
-              <AntDesign name="down" size={20} color="gray" />
+              <AntDesign name="down" size={14} color="gray" />
             </Pressable>
             <View className="w-3/4 flex-row items-center justify-between">
-              <Text className="text-lg font-medium text-gray-500">
+              <Text className="text-sm font-medium text-gray-500">
                 09033173928
               </Text>
-              <AntDesign name="down" size={20} color="gray" />
+              <AntDesign name="down" size={14} color="gray" />
             </View>
           </View>
           <Text className="text-right" style={{ color: COLORS.Primary }}>
             Select number from contact
           </Text>
           <Text className="mt-5 font-normal text-lg">Airtime Top up</Text>
-          <View className="flex-row gap-6 flex-wrap mt-1">
+          <View className="flex-row gap-6 flex-wrap mt-0">
             <Pressable
               className="w-[150px] h-14 rounded-lg flex items-center justify-center"
               style={{ backgroundColor: COLORS.Secondary }}
@@ -132,9 +126,16 @@ const Airtime = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Card value
+                  Description
                 </Text>
-                <Text className="text-[16px] font-semibold">89,000</Text>
+                <View className="flex flex-row items-center">
+                  <Image
+                    source={IMAGES.mtnIcon}
+                    style={styles.notification}
+                    className="mr-2"
+                  />
+                  <Text className="text-[16px] font-medium">Airtime</Text>
+                </View>
               </View>
               <View className="w-full flex flex-row items-center justify-between mb-5">
                 <Text
@@ -144,9 +145,9 @@ const Airtime = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Platform charge:
+                  Amount
                 </Text>
-                <Text className="text-[16px] font-semibold">1,000</Text>
+                <Text className="text-[16px] font-semibold">₦ 1,000</Text>
               </View>
               <View className="w-full flex flex-row items-center justify-between mb-2">
                 <Text
@@ -156,18 +157,38 @@ const Airtime = () => {
                     color: COLORS.grayShadow,
                   }}
                 >
-                  Total charge
+                  Recipient Number:
                 </Text>
-                <Text className="text-[16px] font-semibold">90,000</Text>
+                <Text className="text-[16px] font-semibold">08033176876</Text>
+              </View>
+              <View className="w-full flex flex-row items-center justify-between mb-0">
+                <Text
+                  className="text-[16px] font-semibold"
+                  style={{
+                    fontFamily: "Nunito-Regular",
+                    color: COLORS.grayShadow,
+                  }}
+                >
+                  Save as beneficiary
+                </Text>
+                <View>
+                  <Switch
+                    trackColor={{ false: "#767577", true: "#4caf50" }}
+                    thumbColor={isShown ? "#8bc34a" : "#ddd"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleTheBox}
+                    value={isShown}
+                  />
+                </View>
+                {/* <Text className="text-[16px] font-semibold">Yes</Text> */}
               </View>
             </View>
             <AppButton
-              title={"Submit"}
+              title={"Buy Airtime"}
               marginTop={100}
-              // onPress={handleSubmit(onSignInPressed)}
               onPress={() => {
                 router.push("payment");
-                setModalOpen(!modalOpen)
+                setModalOpen(!modalOpen);
               }}
             />
           </View>

@@ -7,9 +7,6 @@ import { router } from 'expo-router';
 
 export default function Bills() {
   return (
-    // <View>
-    //   <Text>Bill Payment in progress</Text>
-    // </View>
     <FlatList
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.billPaymentStyle}

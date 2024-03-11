@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { COLORS } from '../../constants/color';
-import { Controller } from 'react-hook-form';
-import IMAGES from '../../constants/images';
+import React, { useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { COLORS } from "../../constants/color";
+import { Controller } from "react-hook-form";
+import IMAGES from "../../constants/images";
 
 function AppInput({
   label,
@@ -26,7 +33,10 @@ function AppInput({
         control={control}
         name={name}
         rules={rules}
-        render={({ field: { onBlur, onChange, value }, fieldState: { error } }) => (
+        render={({
+          field: { onBlur, onChange, value },
+          fieldState: { error },
+        }) => (
           <>
             <View style={styles.container}>
               {leading && (
@@ -41,23 +51,38 @@ function AppInput({
                 onBlur={onBlur}
                 placeholder={placeholder}
                 style={styles.input}
-                secureTextEntry={name === 'password' || name === 'confirm-password' ? !show : show}
+                secureTextEntry={
+                  name === "password" ||
+                  name === "confirm-password" ||
+                  name === "pin"
+                    ? !show
+                    : show
+                }
                 keyboardType={keyboard}
               />
               {trailingIcon &&
                 (show ? (
                   <TouchableOpacity onPress={() => setShow(!show)}>
-                    <Image source={IMAGES.showIcon} style={styles.trailingIcon} />
+                    <Image
+                      source={IMAGES.showIcon}
+                      style={styles.trailingIcon}
+                    />
                   </TouchableOpacity>
                 ) : (
                   <TouchableOpacity onPress={() => setShow(!show)}>
-                    <Image source={IMAGES.hideIcon} style={styles.trailingIcon} />
+                    <Image
+                      source={IMAGES.hideIcon}
+                      style={styles.trailingIcon}
+                    />
                   </TouchableOpacity>
                 ))}
 
               {trailingIconEmpty && (
                 <TouchableOpacity onPress={() => setShow(false)}>
-                  <Image source={trailingIconEmpty} style={styles.trailingIcon} />
+                  <Image
+                    source={trailingIconEmpty}
+                    style={styles.trailingIcon}
+                  />
                 </TouchableOpacity>
               )}
             </View>
@@ -74,8 +99,8 @@ const styles = StyleSheet.create({
     height: 44,
     borderWidth: 1,
     borderRadius: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     borderColor: COLORS.borderColor,
   },
   label: {
@@ -84,9 +109,19 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 
-  leadingContainer: { flexDirection: 'row', alignItems: 'center', gap: 10, marginLeft: 10 },
-  leadingTitle: { fontFamily: 'Nunito-Medium' },
-  verticalLine: { height: 30, backgroundColor: COLORS.borderColor, width: 0.9, marginRight: 0 },
+  leadingContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    marginLeft: 10,
+  },
+  leadingTitle: { fontFamily: "Nunito-Medium" },
+  verticalLine: {
+    height: 30,
+    backgroundColor: COLORS.borderColor,
+    width: 0.9,
+    marginRight: 0,
+  },
 
   input: {
     flex: 1,
@@ -97,12 +132,12 @@ const styles = StyleSheet.create({
   errorLabel: {
     marginTop: 5,
     color: COLORS.red,
-    alignSelf: 'stretch',
+    alignSelf: "stretch",
   },
   trailingIcon: {
     width: 24,
     height: 24,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginRight: 20,
   },
 });

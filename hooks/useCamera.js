@@ -4,44 +4,48 @@ import { Camera, CameraType } from "expo-camera";
 import { useEffect, useState } from "react";
 
 export default function useCamera() {
-  const [imageUri, setImageUri] = useState([]);
-  const [newImg, setNewImg] = useState(null);
-  const [permission, requestPermission] = Camera.useCameraPermissions(); // Move this line outside of handleTakePhoto
-
-  useEffect(() => {
-    imageUri?.map((uri) => setNewImg(uri.uri));
-  }, [imageUri]);
-
-  const onChangeImage = (assets) => {
-    setImageUri(assets);
+  // const [imageUri, setImageUri] = useState([]);
+  const [capturedImg, setCapturedImg] = useState(null);
+  const onChangeImage = async (image) => {
+    try {
+      setCapturedImg(image);
+    } catch (error) {
+      console.log("something went wrong", error);
+    }
   };
 
   const handleRemove = () => {
-    setNewImg("");
+    setCapturedImg("");
   };
-
   const handleTakePhoto = async () => {
     try {
-      if (!permission || !permission.granted) {
-        Alert.alert("Permission Denied", "Permission to access camera is required.");
-        return;
-      }
-
-      const { uri } = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 0.5,
+      await ImagePicker.requestCameraPermissionsAsync();
+      const result = await ImagePicker.launchCameraAsync({
+        cameraType: ImagePicker.CameraType.back,
         allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
       });
-      console.log("This is the photo...", uri)
-      if (uri) onChangeImage([{ uri }]);
+      if (!result.canceled) {
+        console.log(result);
+        await onChangeImage(result?.assets[0].uri);
+      }
     } catch (error) {
       console.log(error);
     }
   };
-
+  const handleCapture = () => {
+    if (!capturedImg) handleTakePhoto();
+    else
+      Alert.alert("Delete", "Are you sure you want to delete this image", [
+        { text: "Yes", onPress: handleRemove },
+        { text: "No" },
+      ]);
+  };
   return {
     handleTakePhoto,
     handleRemove,
-    newImg,
+    capturedImg,
+    handleCapture
   };
 }
